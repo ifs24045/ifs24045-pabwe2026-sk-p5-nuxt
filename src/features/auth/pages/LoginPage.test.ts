@@ -40,8 +40,8 @@ async function fillForm(
   email: string,
   password: string
 ) {
-  await wrapper.find("#email").setValue(email);
-  await wrapper.find("#password").setValue(password);
+  await wrapper.find("#login-email-input").setValue(email);
+  await wrapper.find("#login-password-input").setValue(password);
 }
 
 beforeEach(() => {
@@ -55,10 +55,10 @@ describe("tampilan awal", () => {
     const { wrapper } = await renderPage();
 
     expect(wrapper.text()).toContain("Selamat datang kembali");
-    expect(wrapper.find("#email").exists()).toBe(true);
-    expect(wrapper.find("#password").attributes("type")).toBe("password");
+    expect(wrapper.find("#login-email-input").exists()).toBe(true);
+    expect(wrapper.find("#login-password-input").attributes("type")).toBe("password");
     expect(wrapper.find('a[href="/auth/register"]').exists()).toBe(true);
-    expect(wrapper.find('button[type="submit"]').text()).toBe("Masuk");
+    expect(wrapper.find("#login-submit-button").text()).toBe("Masuk");
     expect(wrapper.find("p.text-red-500").exists()).toBe(false);
   });
 
@@ -69,11 +69,11 @@ describe("tampilan awal", () => {
     expect(toggle.attributes("aria-label")).toBe("Tampilkan kata sandi");
 
     await toggle.trigger("click");
-    expect(wrapper.find("#password").attributes("type")).toBe("text");
+    expect(wrapper.find("#login-password-input").attributes("type")).toBe("text");
     expect(toggle.attributes("aria-label")).toBe("Sembunyikan kata sandi");
 
     await toggle.trigger("click");
-    expect(wrapper.find("#password").attributes("type")).toBe("password");
+    expect(wrapper.find("#login-password-input").attributes("type")).toBe("password");
   });
 });
 
@@ -193,7 +193,7 @@ describe("submit", () => {
     await wrapper.find("form").trigger("submit");
     await flushPromises();
 
-    const button = wrapper.find('button[type="submit"]');
+    const button = wrapper.find("#login-submit-button");
     expect(button.text()).toBe("Memproses...");
     expect(button.attributes("disabled")).toBeDefined();
 

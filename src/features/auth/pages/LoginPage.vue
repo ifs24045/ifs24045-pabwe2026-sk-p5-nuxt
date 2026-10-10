@@ -65,7 +65,7 @@ async function handleSubmit() {
 
     <form class="space-y-5" novalidate @submit.prevent="handleSubmit">
       <div>
-        <label for="email" class="mb-1.5 block text-sm font-semibold text-slate-700">
+        <label for="login-email-input" class="mb-1.5 block text-sm font-semibold text-slate-700">
           Email
         </label>
         <div class="relative">
@@ -73,7 +73,7 @@ async function handleSubmit() {
             class="pointer-events-none absolute left-3.5 top-1/2 size-5 -translate-y-1/2 text-slate-400"
           />
           <input
-            id="email"
+            id="login-email-input"
             type="email"
             autocomplete="email"
             placeholder="nama@email.com"
@@ -93,7 +93,7 @@ async function handleSubmit() {
       </div>
 
       <div>
-        <label for="password" class="mb-1.5 block text-sm font-semibold text-slate-700">
+        <label for="login-password-input" class="mb-1.5 block text-sm font-semibold text-slate-700">
           Kata Sandi
         </label>
         <div class="relative">
@@ -101,7 +101,7 @@ async function handleSubmit() {
             class="pointer-events-none absolute left-3.5 top-1/2 size-5 -translate-y-1/2 text-slate-400"
           />
           <input
-            id="password"
+            id="login-password-input"
             :type="showPassword ? 'text' : 'password'"
             autocomplete="current-password"
             placeholder="Masukkan kata sandi"
@@ -130,6 +130,7 @@ async function handleSubmit() {
       </div>
 
       <button
+        id="login-submit-button"
         type="submit"
         :disabled="authStore.isAuthLogin"
         class="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/25 transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-70"
@@ -149,4 +150,4 @@ async function handleSubmit() {
       </RouterLink>
     </p>
   </div>
-</template> 
+</template>
