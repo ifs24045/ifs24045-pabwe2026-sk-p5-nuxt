@@ -89,9 +89,9 @@ async function handleSubmit() {
 <template>
   <div>
     <div class="mb-8">
-      <h2 class="text-3xl font-extrabold tracking-tight text-slate-900">
+      <h1 class="text-3xl font-extrabold tracking-tight text-slate-900">
         Buat akun baru
-      </h2>
+      </h1>
       <p class="mt-2 text-sm text-slate-500">
         Daftar untuk mulai mencatat arus kas Anda.
       </p>

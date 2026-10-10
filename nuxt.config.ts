@@ -50,6 +50,13 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: "Delcom Cash Flow",
+      meta: [
+        {
+          name: "description",
+          content:
+            "Delcom Cash Flow: aplikasi pencatatan pemasukan, pengeluaran, dan saldo arus kas pribadi.",
+        },
+      ],
       htmlAttrs: {
         lang: "id",
       },

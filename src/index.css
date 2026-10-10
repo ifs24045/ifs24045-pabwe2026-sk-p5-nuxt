@@ -2,8 +2,15 @@
 
 @theme {
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-}
 
+  /* Warna disesuaikan agar kontras teks memenuhi WCAG AA (minimal 4.5:1) */
+  --color-slate-400: #64748b;
+  --color-emerald-200: #d1fae5;
+  --color-emerald-600: #047857;
+  --color-emerald-700: #065f46;
+  --color-red-500: #dc2626;
+  --color-red-600: #b91c1c;
+}
 @layer base {
   html {
     scroll-behavior: smooth;

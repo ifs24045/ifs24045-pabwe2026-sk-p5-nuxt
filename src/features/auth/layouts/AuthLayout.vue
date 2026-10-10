@@ -34,9 +34,9 @@ onMounted(() => {
 
       <div class="relative space-y-8">
         <div class="space-y-3">
-          <h1 class="text-4xl font-extrabold leading-tight">
+          <p class="text-4xl font-extrabold leading-tight">
             Kelola arus kas Anda dengan lebih cerdas.
-          </h1>
+          </p>
           <p class="max-w-md text-emerald-100">
             Catat pemasukan dan pengeluaran, pantau saldo tunai, tabungan, dan
             pinjaman dalam satu dashboard yang rapi.

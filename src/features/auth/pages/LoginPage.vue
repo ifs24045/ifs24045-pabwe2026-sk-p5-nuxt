@@ -55,9 +55,9 @@ async function handleSubmit() {
 <template>
   <div>
     <div class="mb-8">
-      <h2 class="text-3xl font-extrabold tracking-tight text-slate-900">
+      <h1 class="text-3xl font-extrabold tracking-tight text-slate-900">
         Selamat datang kembali
-      </h2>
+      </h1>
       <p class="mt-2 text-sm text-slate-500">
         Masuk untuk mengelola arus kas Anda.
       </p>
