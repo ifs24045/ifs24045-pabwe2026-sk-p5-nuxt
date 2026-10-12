@@ -60,6 +60,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    preset: "node-server",
     hooks: {
       ...(process.env.VERCEL ? { preset: "vercel" } : { preset: "node-server" }),
       // Untuk HTML yang di-prerender saat build
@@ -72,6 +73,7 @@ export default defineNuxtConfig({
   },
 
   devServer: {
+    host: "0.0.0.0",
     port: customPort,
   },
 
