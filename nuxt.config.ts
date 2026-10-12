@@ -61,6 +61,7 @@ export default defineNuxtConfig({
 
   nitro: {
     hooks: {
+      ...(process.env.VERCEL ? { preset: "vercel" } : { preset: "node-server" }),
       // Untuk HTML yang di-prerender saat build
       "prerender:generate"(route) {
         if (typeof route.contents === "string" && route.fileName?.endsWith(".html")) {
