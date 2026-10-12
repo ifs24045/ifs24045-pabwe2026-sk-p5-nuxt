@@ -68,10 +68,10 @@ onMounted(async () => {
     </RouterLink>
 
     <!-- Loading -->
-    <div
-      v-if="cashFlowsStore.isCashFlow && !item"
-      class="h-80 animate-pulse rounded-2xl bg-slate-200/70"
-    ></div>
+    <div v-if="cashFlowsStore.isCashFlow && !item">
+      <h1 class="sr-only">Detail Transaksi</h1>
+      <div class="h-80 animate-pulse rounded-2xl bg-slate-200/70"></div>
+    </div>
 
     <!-- Error -->
     <div
@@ -81,7 +81,7 @@ onMounted(async () => {
       <span class="grid size-14 place-items-center rounded-full bg-slate-100 text-slate-400">
         <SearchX class="size-7" />
       </span>
-      <p class="mt-4 font-semibold text-slate-700">Transaksi tidak ditemukan</p>
+      <h1 class="mt-4 font-semibold text-slate-700">Transaksi tidak ditemukan</h1>
       <p class="mt-1 text-sm text-slate-500">
         {{ errorMessage || "Data transaksi tidak tersedia." }}
       </p>

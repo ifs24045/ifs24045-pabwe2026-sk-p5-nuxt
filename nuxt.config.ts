@@ -1,7 +1,17 @@
+// @ts-nocheck
 import { defineNuxtConfig } from "nuxt/config";
 import tailwindcss from "@tailwindcss/vite";
+import { deferNuxtCss } from "./server/utils/deferCss";
 
 const customPort = Number(process.env.APP_PORT || process.env.PORT) || 3000;
+
+const delcomBaseUrl =
+  process.env.VITE_DELCOM_BASEURL || "https://open-api.delcom.org/api/v1";
+
+// Browser memanggil API lewat proxy same-origin (server/api/delcom/[...path].ts),
+// sehingga tidak ada request lintas origin (tanpa preflight CORS).
+// Set VITE_DELCOM_DIRECT=true (lalu build ulang) untuk memanggil Delcom langsung.
+const useDirectApi = process.env.VITE_DELCOM_DIRECT === "true";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -25,9 +35,8 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
     define: {
-      DELCOM_BASEURL: JSON.stringify(
-        process.env.VITE_DELCOM_BASEURL || "https://open-api.delcom.org/api/v1"
-      ),
+      DELCOM_BASEURL: JSON.stringify(useDirectApi ? delcomBaseUrl : "/api/delcom"),
+      DELCOM_UPSTREAM: JSON.stringify(delcomBaseUrl),
     },
     build: {
       chunkSizeWarningLimit: 1500,
@@ -43,9 +52,21 @@ export default defineNuxtConfig({
     },
   },
 
-   nitro: {
-    routeRules: {
-      "/api/v1/**": { proxy: "https://open-api.delcom.org/api/v1/**" },
+  // HTML tidak boleh "no-store" agar halaman bisa dipulihkan dari back/forward cache.
+  routeRules: {
+    "/": { headers: { "cache-control": "public, max-age=0, must-revalidate" } },
+    "/auth/**": { headers: { "cache-control": "public, max-age=0, must-revalidate" } },
+    "/_nuxt/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
+  },
+
+  nitro: {
+    hooks: {
+      // Untuk HTML yang di-prerender saat build
+      "prerender:generate"(route) {
+        if (typeof route.contents === "string" && route.fileName?.endsWith(".html")) {
+          route.contents = deferNuxtCss(route.contents);
+        }
+      },
     },
   },
 
@@ -75,12 +96,21 @@ export default defineNuxtConfig({
           crossorigin: "",
         },
         {
+          // Dimuat non-blocking agar tidak menahan render pertama
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap",
+          href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap",
           media: "print",
           onload: "this.media='all'",
         },
       ],
+      noscript: [
+        {
+          innerHTML:
+            '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">',
+        },
+      ],
+      // CSS kritis minimal agar tidak ada flash putih sebelum stylesheet utama aktif
+      style: [{ innerHTML: "body{background-color:#f8fafc;color:#0f172a}" }],
       bodyAttrs: {
         class: "bg-slate-50 text-slate-900 font-sans antialiased min-h-screen",
       },

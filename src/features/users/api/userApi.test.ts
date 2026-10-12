@@ -95,13 +95,13 @@ describe("resolvePhotoUrl", () => {
     );
   });
 
-  it("menggabungkan path relatif dengan base URL", () => {
-    expect(resolvePhotoUrl("uploads/a.png")).toBe(`${DELCOM_BASEURL}/uploads/a.png`);
+   it("menggabungkan path relatif dengan base URL", () => {
+    expect(resolvePhotoUrl("uploads/a.png")).toBe(`${DELCOM_UPSTREAM}/uploads/a.png`);
   });
 
   it("membuang garis miring di awal path relatif", () => {
     expect(resolvePhotoUrl("/uploads/a.png")).toBe(
-      `${DELCOM_BASEURL}/uploads/a.png`
+      `${DELCOM_UPSTREAM}/uploads/a.png`
     );
   });
 });

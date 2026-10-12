@@ -31,7 +31,7 @@ export function removeAccessToken(): void {
 }
 
 function buildUrl(path: string, params?: QueryParams): string {
-  const url = new URL(`${DELCOM_BASEURL}${path}`, window.location.origin);
+    const url = new URL(`${DELCOM_BASEURL}${path}`, window.location.origin);
 
   if (params) {
     Object.entries(params).forEach(([key, value]) => {

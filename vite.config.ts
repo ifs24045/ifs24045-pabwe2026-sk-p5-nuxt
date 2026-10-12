@@ -22,6 +22,9 @@ export default defineConfig(({ mode }) => {
       DELCOM_BASEURL: JSON.stringify(
         env.VITE_DELCOM_BASEURL || "https://open-api.delcom.org/api/v1"
       ),
+      DELCOM_UPSTREAM: JSON.stringify(
+        env.VITE_DELCOM_BASEURL || "https://open-api.delcom.org/api/v1"
+      ),
     },
     test: {
       globals: true,

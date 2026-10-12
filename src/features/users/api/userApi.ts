@@ -63,7 +63,7 @@ export function putMePassword(payload: ChangePasswordPayload) {
 export function resolvePhotoUrl(photo?: string | null): string | null {
   if (!photo) return null;
   if (/^https?:\/\//i.test(photo)) return photo;
-  return `${DELCOM_BASEURL}/${photo.replace(/^\//, "")}`;
+  return `${DELCOM_UPSTREAM}/${photo.replace(/^\//, "")}`;
 }
 
 /** Mengambil inisial (maks. 2 huruf) dari nama pengguna. */
