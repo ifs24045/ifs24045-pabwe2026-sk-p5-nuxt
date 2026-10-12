@@ -60,6 +60,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    preset: "node-server",
     hooks: {
       // Untuk HTML yang di-prerender saat build
       "prerender:generate"(route) {
@@ -71,6 +72,7 @@ export default defineNuxtConfig({
   },
 
   devServer: {
+    host: "0.0.0.0",
     port: customPort,
   },
 

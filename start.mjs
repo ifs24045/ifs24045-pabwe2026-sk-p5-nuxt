@@ -8,7 +8,7 @@ process.env.PORT = port;
 
 console.log(`Menjalankan Nuxt preview pada port ${port}...`);
 
-const nuxtPreview = spawn("npx", ["nuxt", "preview", "--port", port], {
+const nuxtPreview = spawn("npx", ["nuxt", "preview", "--host", "0.0.0.0", "--port", String(port)], {
   stdio: "inherit",
   shell: true,
   env: process.env,
