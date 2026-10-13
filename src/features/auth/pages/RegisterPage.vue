@@ -16,6 +16,9 @@ import {
   showSuccessDialog,
 } from "../../../helpers/toolsHelper";
 
+// Nilai autocomplete dikirim lewat variabel karena type input bersifat dinamis (tampil/sembunyi).
+const newPasswordHint = "new-password";
+
 const router = useRouter();
 const authStore = useAuthStore();
 
@@ -31,8 +34,6 @@ const errors = reactive({
   password: "",
   confirmPassword: "",
 });
-
-const newPasswordHint = "new-password";
 
 function validate(): boolean {
   errors.name = "";

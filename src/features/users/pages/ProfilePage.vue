@@ -19,6 +19,10 @@ import {
   showSuccessDialog,
 } from "../../../helpers/toolsHelper";
 
+// Nilai autocomplete dikirim lewat variabel karena type input bersifat dinamis (tampil/sembunyi).
+const currentPasswordHint = "current-password";
+const newPasswordHint = "new-password";
+
 const MAX_PHOTO_SIZE = 2 * 1024 * 1024; // 2 MB
 
 const usersStore = useUsersStore();
@@ -40,9 +44,6 @@ const passwordErrors = reactive({
   newPassword: "",
   confirmPassword: "",
 });
-
-const currentPasswordHint = "current-password";
-const newPasswordHint = "new-password";
 
 function fillForm() {
   if (usersStore.profile) {
@@ -332,7 +333,7 @@ async function handlePasswordSubmit() {
             <input
               id="oldPassword"
               :type="showPassword ? 'text' : 'password'"
-              :autocomplete="newPasswordHint"
+              :autocomplete="currentPasswordHint"
               :value="oldPassword"
               class="w-full rounded-xl border bg-white px-4 py-3 text-sm outline-none transition focus:ring-4"
               :class="
