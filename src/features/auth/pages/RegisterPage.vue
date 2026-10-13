@@ -17,7 +17,7 @@ import {
 } from "../../../helpers/toolsHelper";
 
 // Nilai autocomplete dikirim lewat variabel karena type input bersifat dinamis (tampil/sembunyi).
-const newPasswordHint = "new-password";
+const autofillNew = "new-password";
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -168,7 +168,7 @@ async function handleSubmit() {
           <input
             id="password"
             :type="showPassword ? 'text' : 'password'"
-            :autocomplete="newPasswordHint"
+            :autocomplete="autofillNew"
             placeholder="Minimal 6 karakter"
             :value="password"
             class="w-full rounded-xl border bg-white py-3 pl-11 pr-12 text-sm outline-none transition focus:ring-4"
@@ -208,7 +208,7 @@ async function handleSubmit() {
           <input
             id="confirmPassword"
             :type="showPassword ? 'text' : 'password'"
-            :autocomplete="newPasswordHint"
+            :autocomplete="autofillNew"
             placeholder="Ulangi kata sandi"
             :value="confirmPassword"
             class="w-full rounded-xl border bg-white py-3 pl-11 pr-4 text-sm outline-none transition focus:ring-4"

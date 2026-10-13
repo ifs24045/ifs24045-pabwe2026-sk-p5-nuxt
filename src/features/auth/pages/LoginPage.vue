@@ -10,7 +10,7 @@ import {
 } from "../../../helpers/toolsHelper";
 
 // Nilai autocomplete dikirim lewat variabel karena type input bersifat dinamis (tampil/sembunyi).
-const currentPasswordHint = "current-password";
+const autofillCurrent = "current-password";
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -106,7 +106,7 @@ async function handleSubmit() {
           <input
             id="login-password-input"
             :type="showPassword ? 'text' : 'password'"
-            :autocomplete="currentPasswordHint"
+            :autocomplete="autofillCurrent"
             placeholder="Masukkan kata sandi"
             :value="password"
             class="w-full rounded-xl border bg-white py-3 pl-11 pr-12 text-sm outline-none transition focus:ring-4"
