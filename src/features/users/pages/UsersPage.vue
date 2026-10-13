@@ -102,6 +102,8 @@ onMounted(loadUsers);
           v-if="resolvePhotoUrl(user.photo) && !failedPhotos[user.id]"
           :src="resolvePhotoUrl(user.photo)!"
           :alt="user.name"
+          width="56"
+          height="56"
           class="size-14 shrink-0 rounded-full object-cover"
           @error="failedPhotos[user.id] = true"
         />

@@ -44,7 +44,7 @@ async function handleSubmit() {
   });
 
   if (result.success) {
-    await showSuccessDialog(result.message || "Login berhasil.");
+    showSuccessDialog(result.message || "Login berhasil.");
     await router.push("/");
   } else {
     await showErrorDialog(result.message);

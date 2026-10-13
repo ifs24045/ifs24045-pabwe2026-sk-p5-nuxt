@@ -78,7 +78,7 @@ async function handleSubmit() {
   });
 
   if (result.success) {
-    await showSuccessDialog(result.message || "Registrasi berhasil. Silakan login.");
+    showSuccessDialog(result.message || "Registrasi berhasil. Silakan login.");
     await router.push("/auth/login");
   } else {
     await showErrorDialog(result.message);

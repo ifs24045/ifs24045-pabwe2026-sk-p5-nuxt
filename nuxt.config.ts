@@ -16,7 +16,7 @@ const useDirectApi = process.env.VITE_DELCOM_DIRECT === "true";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   telemetry: false,
 
   // Disable SSR for SPA mode (client-side routing and storage)
@@ -39,12 +39,12 @@ export default defineNuxtConfig({
       DELCOM_UPSTREAM: JSON.stringify(delcomBaseUrl),
     },
     build: {
-      chunkSizeWarningLimit: 1500,
+      chunkSizeWarningLimit: 1000,
       rollupOptions: {
         output: {
           manualChunks(id) {
-            if (id.includes("node_modules")) {
-              return "vendor";
+            if (id.includes("node_modules/sweetalert2")) {
+              return "sweetalert2";
             }
           },
         },
@@ -54,18 +54,21 @@ export default defineNuxtConfig({
 
   // HTML tidak boleh "no-store" agar halaman bisa dipulihkan dari back/forward cache.
   routeRules: {
-    "/": { headers: { "cache-control": "public, max-age=0, must-revalidate" } },
-    "/auth/**": { headers: { "cache-control": "public, max-age=0, must-revalidate" } },
+    "/**": { headers: { "cache-control": "public, max-age=0, must-revalidate" } },
     "/_nuxt/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
   },
 
   nitro: {
-    preset: "node-server",
+    preset: process.env.VERCEL ? "vercel" : "node-server",
     hooks: {
-      ...(process.env.VERCEL ? { preset: "vercel" } : { preset: "node-server" }),
+      "render:html"(htmlContext: any) {
+        if (Array.isArray(htmlContext.head)) {
+          htmlContext.head = htmlContext.head.map((tag: string) => deferNuxtCss(tag));
+        }
+      },
       // Untuk HTML yang di-prerender saat build
-      "prerender:generate"(route) {
-        if (typeof route.contents === "string" && route.fileName?.endsWith(".html")) {
+      "prerender:generate"(route: any) {
+        if (typeof route.contents === "string") {
           route.contents = deferNuxtCss(route.contents);
         }
       },
@@ -74,7 +77,7 @@ export default defineNuxtConfig({
 
   devServer: {
     host: "0.0.0.0",
-    port: customPort,
+    port: 3000,
   },
 
   app: {

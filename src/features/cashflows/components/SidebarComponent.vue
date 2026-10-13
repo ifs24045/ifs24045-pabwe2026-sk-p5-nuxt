@@ -35,7 +35,7 @@ function isActive(to: string): boolean {
   >
     <div class="flex h-16 items-center justify-between border-b border-slate-200 px-5">
       <div class="flex items-center gap-3">
-        <img src="/logo.svg" alt="Logo" class="size-9 rounded-xl" />
+        <img src="/logo.svg" alt="Logo" width="36" height="36" class="size-9 rounded-xl" />
         <span class="font-bold tracking-tight text-slate-900">Delcom Cash Flow</span>
       </div>
       <button

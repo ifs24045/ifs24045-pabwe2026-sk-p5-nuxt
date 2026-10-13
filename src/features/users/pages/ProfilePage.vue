@@ -187,6 +187,8 @@ async function handlePasswordSubmit() {
             v-if="resolvePhotoUrl(usersStore.profile?.photo) && !photoFailed"
             :src="resolvePhotoUrl(usersStore.profile?.photo)!"
             :alt="usersStore.profile?.name"
+            width="112"
+            height="112"
             class="size-28 rounded-full object-cover ring-4 ring-emerald-100"
             @error="photoFailed = true"
           />

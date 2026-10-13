@@ -28,7 +28,7 @@ onMounted(() => {
       ></div>
 
       <div class="relative flex items-center gap-3">
-        <img src="/logo.svg" alt="Logo" class="size-10 rounded-xl" />
+        <img src="/logo.svg" alt="Logo" width="40" height="40" class="size-10 rounded-xl" />
         <span class="text-xl font-bold tracking-tight">Delcom Cash Flow</span>
       </div>
 
@@ -74,7 +74,7 @@ onMounted(() => {
     <main class="flex w-full flex-1 items-center justify-center px-6 py-12 lg:w-1/2">
       <div class="w-full max-w-md">
         <div class="mb-8 flex items-center gap-3 lg:hidden">
-          <img src="/logo.svg" alt="Logo" class="size-10 rounded-xl" />
+          <img src="/logo.svg" alt="Logo" width="40" height="40" class="size-10 rounded-xl" />
           <span class="text-xl font-bold tracking-tight text-slate-900">
             Delcom Cash Flow
           </span>

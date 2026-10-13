@@ -4,10 +4,9 @@
  * jadi menunda CSS tidak menyebabkan flash konten tanpa gaya, tetapi
  * menghilangkan peringatan Lighthouse "Render blocking requests".
  */
-const CSS_LINK = /<link\b[^>]*\brel="stylesheet"[^>]*\bhref="(\/_nuxt\/[^"]+\.css)"[^>]*>/g;
-
 export function deferNuxtCss(html: string): string {
-  return html.replace(CSS_LINK, (tag, href: string) => {
+  return html.replace(/<link\b([^>]*\bhref="([^"]+\.css)"[^>]*)>/gi, (tag, _attrs, href) => {
+    if (!/rel=["']stylesheet["']/i.test(tag)) return tag;
     if (tag.includes("media=")) return tag;
     const crossorigin = tag.includes("crossorigin") ? " crossorigin" : "";
     return (
