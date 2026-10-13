@@ -41,6 +41,9 @@ const passwordErrors = reactive({
   confirmPassword: "",
 });
 
+const currentPasswordHint = "current-password";
+const newPasswordHint = "new-password";
+
 function fillForm() {
   if (usersStore.profile) {
     onNameChange(usersStore.profile.name);
@@ -329,7 +332,7 @@ async function handlePasswordSubmit() {
             <input
               id="oldPassword"
               :type="showPassword ? 'text' : 'password'"
-              autocomplete="current-password"
+              :autocomplete="newPasswordHint"
               :value="oldPassword"
               class="w-full rounded-xl border bg-white px-4 py-3 text-sm outline-none transition focus:ring-4"
               :class="
@@ -355,7 +358,7 @@ async function handlePasswordSubmit() {
               <input
                 id="newPassword"
                 :type="showPassword ? 'text' : 'password'"
-                autocomplete="new-password"
+                :autocomplete="newPasswordHint"
                 :value="newPassword"
                 class="w-full rounded-xl border bg-white px-4 py-3 text-sm outline-none transition focus:ring-4"
                 :class="
@@ -380,7 +383,7 @@ async function handlePasswordSubmit() {
               <input
                 id="confirmPassword"
                 :type="showPassword ? 'text' : 'password'"
-                autocomplete="new-password"
+                :autocomplete="newPasswordHint"
                 :value="confirmPassword"
                 class="w-full rounded-xl border bg-white px-4 py-3 text-sm outline-none transition focus:ring-4"
                 :class="

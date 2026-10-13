@@ -32,6 +32,8 @@ const errors = reactive({
   confirmPassword: "",
 });
 
+const newPasswordHint = "new-password";
+
 function validate(): boolean {
   errors.name = "";
   errors.email = "";
@@ -165,7 +167,7 @@ async function handleSubmit() {
           <input
             id="password"
             :type="showPassword ? 'text' : 'password'"
-            autocomplete="new-password"
+            :autocomplete="newPasswordHint"
             placeholder="Minimal 6 karakter"
             :value="password"
             class="w-full rounded-xl border bg-white py-3 pl-11 pr-12 text-sm outline-none transition focus:ring-4"
@@ -205,7 +207,7 @@ async function handleSubmit() {
           <input
             id="confirmPassword"
             :type="showPassword ? 'text' : 'password'"
-            autocomplete="new-password"
+            :autocomplete="newPasswordHint"
             placeholder="Ulangi kata sandi"
             :value="confirmPassword"
             class="w-full rounded-xl border bg-white py-3 pl-11 pr-4 text-sm outline-none transition focus:ring-4"

@@ -17,6 +17,7 @@ const [password, onPasswordChange] = useInput("");
 const showPassword = ref(false);
 
 const errors = reactive({ email: "", password: "" });
+const currentPasswordHint = "current-password";
 
 function validate(): boolean {
   errors.email = "";
@@ -103,7 +104,7 @@ async function handleSubmit() {
           <input
             id="login-password-input"
             :type="showPassword ? 'text' : 'password'"
-            autocomplete="current-password"
+            :autocomplete="currentPasswordHint"
             placeholder="Masukkan kata sandi"
             :value="password"
             class="w-full rounded-xl border bg-white py-3 pl-11 pr-12 text-sm outline-none transition focus:ring-4"
