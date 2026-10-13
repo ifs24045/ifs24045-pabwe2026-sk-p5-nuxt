@@ -44,8 +44,8 @@ onMounted(async () => {
     </div>
   </div>
 
-  <div v-else class="grid min-h-screen place-items-center bg-slate-50">
+  <main v-else class="grid min-h-screen place-items-center bg-slate-50">
     <h1 class="sr-only">Memuat Delcom Cash Flow...</h1>
     <LoaderCircle class="size-8 animate-spin text-emerald-600" />
-  </div>
+  </main>
 </template>
