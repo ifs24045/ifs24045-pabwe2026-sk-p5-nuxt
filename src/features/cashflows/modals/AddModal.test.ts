@@ -49,7 +49,7 @@ async function submit(wrapper: W) {
 describe("AddModal", () => {
   it("tidak merender apa pun saat tertutup", async () => {
     const { wrapper } = await renderModal(false);
-    expect(wrapper.find('[role="dialog"]').exists()).toBe(false);
+    expect(wrapper.find("dialog").exists()).toBe(false);
   });
 
   it("merender formulir saat terbuka", async () => {
@@ -69,7 +69,7 @@ describe("AddModal", () => {
 
   it("menutup saat latar belakang diklik", async () => {
     const { wrapper } = await renderModal();
-    await wrapper.find('[role="dialog"]').trigger("click");
+  await wrapper.find("dialog").trigger("click");
     expect(wrapper.emitted("close")).toHaveLength(1);
   });
 

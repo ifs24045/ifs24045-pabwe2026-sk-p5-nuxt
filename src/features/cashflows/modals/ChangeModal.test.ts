@@ -56,7 +56,7 @@ async function submit(wrapper: W) {
 describe("ChangeModal", () => {
   it("tidak merender apa pun saat tertutup", async () => {
     const { wrapper } = await renderModal(false);
-    expect(wrapper.find('[role="dialog"]').exists()).toBe(false);
+    expect(wrapper.find("dialog").exists()).toBe(false);
   });
 
   it("mengisi formulir dari data transaksi", async () => {
@@ -96,7 +96,7 @@ describe("ChangeModal", () => {
 
   it("menutup lewat latar belakang, tombol X, dan Batal", async () => {
     const { wrapper } = await renderModal();
-    await wrapper.find('[role="dialog"]').trigger("click");
+    await wrapper.find("dialog").trigger("click");
     await wrapper.find('button[aria-label="Tutup"]').trigger("click");
     const cancel = wrapper.findAll("button").find((b) => b.text() === "Batal")!;
     await cancel.trigger("click");

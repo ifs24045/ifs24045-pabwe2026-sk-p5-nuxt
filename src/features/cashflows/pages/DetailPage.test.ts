@@ -148,7 +148,7 @@ describe("DetailPage", () => {
     const { wrapper, fetchCashFlow } = await renderPage();
     const edit = wrapper.findAll("button").find((b) => b.text() === "Ubah")!;
     await edit.trigger("click");
-    expect(wrapper.find('[role="dialog"]').exists()).toBe(true);
+    expect(wrapper.find("dialog").exists()).toBe(true);
 
     const store = useCashFlowsStore();
     vi.spyOn(store, "changeCashFlow").mockResolvedValue({
