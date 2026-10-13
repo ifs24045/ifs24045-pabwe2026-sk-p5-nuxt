@@ -8,10 +8,9 @@ const customPort = Number(process.env.APP_PORT || process.env.PORT) || 3000;
 const delcomBaseUrl =
   process.env.VITE_DELCOM_BASEURL || "https://open-api.delcom.org/api/v1";
 
-// Browser memanggil API lewat proxy same-origin (server/api/delcom/[...path].ts),
-// sehingga tidak ada request lintas origin (tanpa preflight CORS).
-// Set VITE_DELCOM_DIRECT=true (lalu build ulang) untuk memanggil Delcom langsung.
-const useDirectApi = process.env.VITE_DELCOM_DIRECT === "true";
+// Browser memanggil API langsung ke Delcom Open API karena sudah mendukung CORS (*).
+// Hal ini mencegah error 502 Bad Gateway pada serverless proxy Vercel.
+const useDirectApi = process.env.VITE_DELCOM_DIRECT !== "false";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({

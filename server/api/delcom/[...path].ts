@@ -3,7 +3,6 @@ import { defineEventHandler, getRequestURL, getRouterParam, proxyRequest, setRes
 /**
  * Proxy same-origin ke Delcom Open API.
  * Browser memanggil /api/delcom/<path>; server meneruskannya ke VITE_DELCOM_BASEURL.
- * Dengan begitu tidak ada request lintas origin (tidak ada preflight CORS).
  */
 export default defineEventHandler(async (event) => {
   const upstream = (process.env.VITE_DELCOM_BASEURL || "https://open-api.delcom.org/api/v1").replace(/\/+$/, "");
@@ -11,7 +10,12 @@ export default defineEventHandler(async (event) => {
   const search = getRequestURL(event).search;
 
   try {
-    return await proxyRequest(event, `${upstream}/${path}${search}`);
+    const upstreamUrl = new URL(upstream);
+    return await proxyRequest(event, `${upstream}/${path}${search}`, {
+      headers: {
+        host: upstreamUrl.host,
+      },
+    });
   } catch (error) {
     setResponseStatus(event, 502);
     return { status: "error", message: `Gagal menghubungi server Delcom: ${(error as Error).message}` };
