@@ -5,13 +5,17 @@ import { deferNuxtCss } from "./server/utils/deferCss";
 
 const customPort = Number(process.env.APP_PORT || process.env.PORT) || 3000;
 
-const delcomBaseUrl =
-  process.env.VITE_DELCOM_BASEURL || "https://open-api.delcom.org/api/v1";
+// Hanya terima URL absolut (http/https). Nilai relatif seperti "/api/v1" diabaikan
+// agar proxy tidak mengarah ke dirinya sendiri.
+const envBaseUrl = process.env.VITE_DELCOM_BASEURL || "";
+const delcomBaseUrl = /^https?:\/\//.test(envBaseUrl)
+  ? envBaseUrl.replace(/\/+$/, "")
+  : "https://open-api.delcom.org/api/v1";
 
-// Browser memanggil API langsung ke Delcom Open API karena sudah mendukung CORS (*).
-// Hal ini mencegah error 502 Bad Gateway pada serverless proxy Vercel.
-const useDirectApi = process.env.VITE_DELCOM_DIRECT !== "false";
-
+// Browser memanggil API lewat proxy same-origin (server/api/delcom/[...path].ts),
+// sehingga tidak ada request lintas origin (tanpa preflight CORS).
+// Set VITE_DELCOM_DIRECT=true (lalu build ulang) untuk memanggil Delcom langsung.
+const useDirectApi = process.env.VITE_DELCOM_DIRECT === "true";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",

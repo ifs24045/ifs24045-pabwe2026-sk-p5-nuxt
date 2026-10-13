@@ -5,7 +5,8 @@ import { defineEventHandler, getRequestURL, getRouterParam, proxyRequest, setRes
  * Browser memanggil /api/delcom/<path>; server meneruskannya ke VITE_DELCOM_BASEURL.
  */
 export default defineEventHandler(async (event) => {
-  const upstream = (process.env.VITE_DELCOM_BASEURL || "https://open-api.delcom.org/api/v1").replace(/\/+$/, "");
+  const envUrl = process.env.VITE_DELCOM_BASEURL || "";
+  const upstream = (/^https?:\/\//.test(envUrl) ? envUrl : "https://open-api.delcom.org/api/v1").replace(/\/+$/, "");
   const path = getRouterParam(event, "path") || "";
   const search = getRequestURL(event).search;
 

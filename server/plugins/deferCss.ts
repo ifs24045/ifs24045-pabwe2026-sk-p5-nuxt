@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { defineNitroPlugin } from "nitropack/runtime";
 import { deferNuxtCss } from "../utils/deferCss";
 
