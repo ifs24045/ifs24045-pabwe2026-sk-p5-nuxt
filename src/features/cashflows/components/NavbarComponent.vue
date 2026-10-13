@@ -7,7 +7,7 @@ import { useUsersStore } from "../../users/states/usersStore";
 import { getUserInitials } from "../../users/api/userApi";
 import { showConfirmDialog } from "../../../helpers/toolsHelper";
 
-const emit = defineEmits<{ (e: "toggle-sidebar"): void }>();
+const emit = defineEmits<{ "toggle-sidebar": [] }>();
 
 const router = useRouter();
 const authStore = useAuthStore();

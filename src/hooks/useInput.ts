@@ -25,7 +25,7 @@ export function useInput<T = string>(initialValue: T): UseInputReturn<T> {
   }
 
   function reset(newValue?: T): void {
-    value.value = newValue === undefined ? initialValue : newValue;
+    value.value = newValue ?? initialValue;
   }
 
   return [value, handleChange, reset];

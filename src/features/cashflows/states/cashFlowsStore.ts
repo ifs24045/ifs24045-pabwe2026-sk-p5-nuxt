@@ -123,7 +123,7 @@ function normalizeLabels(raw: unknown): string[] {
     .map((item) =>
       typeof item === "string" ? item : item?.label ?? item?.name ?? ""
     )
-    .filter((label): label is string => Boolean(label));
+    .filter(Boolean) as string[];
 }
 
 function normalizeList<T>(raw: unknown): T[] {

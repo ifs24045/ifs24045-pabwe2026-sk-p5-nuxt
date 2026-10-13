@@ -54,7 +54,7 @@ function validate(): boolean {
   const amount = Number(nominal.value);
   if (!nominal.value) {
     errors.nominal = "Nominal wajib diisi.";
-  } else if (!(amount > 0)) {
+  } else if (Number.isNaN(amount) || amount <= 0) {
     errors.nominal = "Nominal harus lebih dari 0.";
   }
 
@@ -86,11 +86,10 @@ async function handleSubmit() {
 </script>
 
 <template>
-  <div
+  <dialog
     v-if="open"
-    class="fixed inset-0 z-50 flex items-end justify-center bg-slate-900/50 p-4 sm:items-center"
-    role="dialog"
-    aria-modal="true"
+    open
+    class="fixed inset-0 z-50 m-0 flex h-full max-h-none w-full max-w-none items-end justify-center border-0 bg-slate-900/50 p-4 text-inherit sm:items-center"
     aria-label="Tambah transaksi"
     @click.self="emit('close')"
   >
@@ -205,5 +204,5 @@ async function handleSubmit() {
         </div>
       </form>
     </div>
-  </div>
+  </dialog>
 </template>

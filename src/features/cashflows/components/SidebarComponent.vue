@@ -3,7 +3,7 @@ import { useRoute } from "vue-router";
 import { LayoutDashboard, Users, User, X } from "lucide-vue-next";
 
 defineProps<{ open: boolean }>();
-const emit = defineEmits<{ (e: "close"): void }>();
+const emit = defineEmits<{ close: [] }>();
 
 const route = useRoute();
 
