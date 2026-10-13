@@ -1,0 +1,16 @@
+# Dependensi transitif Nuxt untuk tooling dev/build (bukan bagian bundel runtime aplikasi).
+# braces & node-forge: belum ada versi perbaikan di npm.
+# simple-git >= 4: tidak kompatibel dengan @nuxt/devtools versi saat ini (nuxt prepare gagal).
+# Tinjau ulang saat Nuxt/devtools dirilis dengan dependensi terbarui.
+
+# @nuxt/devtools -> simple-git
+GHSA-v5rq-49vh-5v5c
+GHSA-x6jw-m9v5-85vh
+GHSA-858h-whjf-mvg5
+GHSA-g4wm-2vf7-vfgr
+
+# nitropack -> micromatch -> braces
+GHSA-vfj7-8cjw-p6xm
+
+# nitropack -> listhen -> node-forge
+GHSA-86w9-cpqp-85rv
